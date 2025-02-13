@@ -50,7 +50,7 @@ else
 fi
 
 # Adding Database Configuration to PuppetDB in /etc/puppetlabs/puppetdb/conf.d/database.ini
-echo -e "[database]\nsubname = //`hostname -I | awk '{print $1}'`:5432/puppetdb\nusername = "puppetdb"\npassword = "puppetdb@123"" > /etc/puppetlabs/puppetdb/conf.d/database.ini
+echo -e "[database]\nsubname = //localhost:5432/puppetdb\nusername = "puppetdb"\npassword = "puppetdb@123"" > /etc/puppetlabs/puppetdb/conf.d/database.ini
 echo "Database Configuration added to database.ini"
 
 # Adding PuppetDB URL in /etc/puppetlabs/puppet/puppetdb.conf
