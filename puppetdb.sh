@@ -14,7 +14,7 @@ fi
 echo "Configuring Postgresql Database..."
 sudo -u postgres psql <<EOF 1> /dev/null 2> /dev/null	
 CREATE DATABASE puppetdb;
-CREATE USER puppetdb WITH PASSWORD ‘puppetdb@123’;
+CREATE USER puppetdb WITH PASSWORD 'puppetdb@123';
 GRANT ALL PRIVILEGES ON DATABASE puppetdb TO puppetdb;
 EOF
 echo "Postgresql Database configured succesfully"
@@ -50,8 +50,8 @@ else
 fi
 
 # Adding Database Configuration to PuppetDB in /etc/puppetlabs/puppetdb/conf.d/database.ini
-echo -e "[database]\nsubname = //`hostname -I | awk '{print $1}'`:5432/pupetdb\nusername = "puppetdb"\npassword = "puppetdb@123"" > /etc/puppetlabs/puppetdb/conf.d/database.ini
-echo "Database Configuration addes to database.ini"
+echo -e "[database]\nsubname = //`hostname -I | awk '{print $1}'`:5432/puppetdb\nusername = "puppetdb"\npassword = "puppetdb@123"" > /etc/puppetlabs/puppetdb/conf.d/database.ini
+echo "Database Configuration added to database.ini"
 
 # Adding PuppetDB URL in /etc/puppetlabs/puppet/puppetdb.conf
 echo -e "[main]\nserver_urls = https://`hostname -I | awk '{print $1}'`:8081" > /etc/puppetlabs/puppet/puppetdb.conf
@@ -68,7 +68,7 @@ mv /etc/puppetlabs/puppetdb/ssl/`hostname -I | awk '{print $1}'`.pem /etc/puppet
 chown -R puppetdb:puppetdb /etc/puppetlabs/puppetdb/ssl
 
 echo "Configuring jetty.ini..."
-echo -e "host = 0.0.0.0\nport = 8080\nssl-host = 0.0.0.0 \nssl-port = 8081\nssl-key =  /etc/puppetlabs/puppetdb/ssl/private.pem\nssl-cert = /etc/puppetlabs/puppetdb/ssl/certificate.pem\nssl-ca-cert = /etc/puppetlabs/puppedb/ssl/ca.pem" > /etc/puppetlabs/puppetdb/conf.d/jetty.ini
+echo -e "[jetty]\nhost = 0.0.0.0\nport = 8080\nssl-host = 0.0.0.0 \nssl-port = 8081\nssl-key =  /etc/puppetlabs/puppetdb/ssl/private.pem\nssl-cert = /etc/puppetlabs/puppetdb/ssl/certificate.pem\nssl-ca-cert = /etc/puppetlabs/puppetdb/ssl/ca.pem" > /etc/puppetlabs/puppetdb/conf.d/jetty.ini
 echo "jetty.ini successfully configured"
 
 # Starting PuppetDB on each reboot
