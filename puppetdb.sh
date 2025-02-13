@@ -47,7 +47,7 @@ fi
 if ! command puppetdb version 1> /dev/null 2> /dev/null
 then
     echo "Installing PuppetDB..."
-    apt install puppetdb puppet-terminus-puppetdb -y 2> /dev/null
+    apt install puppetdb puppetdb-termini -y 2> /dev/null
     echo "PuppetDB Installed"
 else
     echo "PuppetDB already installed"
