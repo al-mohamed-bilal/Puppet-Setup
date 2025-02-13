@@ -24,17 +24,17 @@ line1=`echo -e "local\tall\tpuppetdb\tmd5"`
 line2=`echo -e "host\tall\tpuppetdb\t127.0.0.1/32\tmd5"`
 line3=`echo -e "host\t all\tpuppetdb\t::1/128\tmd5"`
 
-if !  grep -xF $line1 /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
+if !  grep -xF "$line1" /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
 then
     echo "$line1" >> /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
 fi
 
-if ! grep -xF $line2 /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
+if ! grep -xF "$line2" /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
 then
     echo "$line2" >> /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
 fi
 
-if ! grep -xF $line3 /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
+if ! grep -xF "$line3" /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
 then
     echo "$line3" >> /etc/postgresql/`psql -V | awk '{print $3}' | cut -d . -f1`/main/pg_hba.conf
 fi
@@ -54,7 +54,7 @@ echo -e "[database]\nsubname = //`hostname -I | awk '{print $1}'`:5432/pupetdb\n
 echo "Database Configuration addes to database.ini"
 
 # Adding PuppetDB URL in /etc/puppetlabs/puppet/puppetdb.conf
-echo -e "[main]\nserver_urls = https://`hostname -I | awk '{print $1}'`:8081"
+echo -e "[main]\nserver_urls = https://`hostname -I | awk '{print $1}'`:8081" > /etc/puppetlabs/puppet/puppetdb.conf
 echo "PuppetDB URL added to puppetdb.conf"
 
 # Setting up SSL and Configuring /etc/puppetlabs/puppetdb/conf.d/jetty.ini
