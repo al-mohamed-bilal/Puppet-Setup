@@ -88,7 +88,7 @@ fi
 if ! systemctl is-active puppetdb 1> /dev/null 2> /dev/null
 then
     echo "Staring PuppetDB..."
-    systemctl start puppetDB 1> /dev/null 2> /dev/null
+    systemctl start puppetdb 1> /dev/null 2> /dev/null
     echo "PuppetDB Started"
 else
     echo "PuppetDB is already running"
