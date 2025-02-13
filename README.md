@@ -56,7 +56,7 @@ chmod +x puppetagent.sh
 ```
 
 ## PuppetBoard Setup
-PuppetBoard can be installed on Puppet Server system (follow step 2 and 3 directly) or a seperate system (follow step 1 to 3).
+PuppetBoard can be installed on Puppet Server system (follow step 2 and 3 directly) or a seperate system (follow step 1 to 3). Recommended for python3.12.
 1. Use the below command to clone this repository into your local system (Puppet Agent System).
 
 ```
