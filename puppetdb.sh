@@ -16,6 +16,10 @@ sudo -u postgres psql <<EOF 1> /dev/null 2> /dev/null
 CREATE DATABASE puppetdb;
 CREATE USER puppetdb WITH PASSWORD 'puppetdb@123';
 GRANT ALL PRIVILEGES ON DATABASE puppetdb TO puppetdb;
+ALTER DATABASE puppetdb OWNER TO puppetdb;
+\c puppetdb
+CREATE EXTENSION pg_trgm;
+\q
 EOF
 echo "Postgresql Database configured succesfully"
 
