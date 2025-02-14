@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Chaning hostname of Puppet Server as its IP Address
-hostname=`hostname -I | awk '{print $1}'`
+hostname="server-`hostname -I | awk '{print $1}'`"
 hostnamectl hostname $hostname
 
 # Installing Puppet Server
@@ -18,7 +18,7 @@ else
 fi
 
 # Adding hostname and IP address to /etc/hosts file
-name_entry=`echo -e "$hostname\t$hostname"`
+name_entry=`echo -e "`hostname -I | awk '{print $1}'`\t$hostname"`
 if ! grep -q $name_entry /etc/hosts 2> /dev/null
 then
     echo -e "$name_entry" >> /etc/hosts
