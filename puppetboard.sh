@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Declaring the directory of  Virtual Environment
-venv_dir="puppetboard-venv"
+venv_dir="/etc/puppetboard/puppetboard-venv"
 
 echo "Creating Virtual Environment..."
 
@@ -17,6 +17,7 @@ fi
 # Creating Virtual Environment to install Puppetboard
 if [ ! -d $venv_dir ]
 then
+    mkdir -p $venv_dir
     python3 -m venv $venv_dir
     echo "Successfully created the virtual environment $venv_dir"
 else
@@ -32,7 +33,8 @@ pip3 install puppetboard 1> /dev/null 2> /dev/null
 echo "Successfully installed Puppetboard"
 
 # Moving to the application directory
-cd "$venv_dir/lib/python3.11/site-packages/puppetboard"
+python_version=python`python3 --version | cut -d " " -f2 | cut -d "." -f1,2`
+cd "$venv_dir/lib/$python_version/site-packages/puppetboard"
 
 # Changing PuppetDB hostname in default_settings.py
 echo "Enter hostname of PuppetDB"
