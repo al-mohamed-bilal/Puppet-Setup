@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Chaning hostname of Puppet Server as its IP Address
-hostname="server-`hostname -I | awk '{print $1}'`"
+hostname="puppet-server"
 hostnamectl hostname $hostname
 
 # Installing Puppet Server
