@@ -8,7 +8,11 @@ echo "Creating Virtual Environment..."
 # Installing python3 and other dependencies to install Puppetboard
 if ! command -v python3 1> /dev/null
 then
-    apt install python3 python3-dev libpq-dev python3-pip python3-venv -y 1> /dev/null 2> /dev/null
+    apt install python3 -y 2> /dev/null
+    apt install python3-dev -y 2> /dev/null
+    apt install libpq-dev -y 2> /dev/null
+    apt install python3-pip -y 2> /dev/null
+    apt install python3-venv -y 2> /dev/null
     echo "Installed Python successfully"
 else
     echo "Python is already installed"
