@@ -18,7 +18,8 @@ else
 fi
 
 # Adding hostname and IP address to /etc/hosts file
-name_entry=`echo -e "`hostname -I | awk '{print $1}'`\t$hostname"`
+ip="`hostname -I | awk '{print $1}'`"
+name_entry=`echo -e "$ip\t$hostname"`
 if ! grep -q $name_entry /etc/hosts 2> /dev/null
 then
     echo -e "$name_entry" >> /etc/hosts
