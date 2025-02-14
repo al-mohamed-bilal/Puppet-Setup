@@ -58,7 +58,7 @@ echo -e "[database]\nsubname = //localhost:5432/puppetdb\nusername = "puppetdb"\
 echo "Database Configuration added to database.ini"
 
 # Adding PuppetDB URL in /etc/puppetlabs/puppet/puppetdb.conf
-hostname="server-`hostname -I | awk '{print $1}'`"
+hostname="puppet-server"
 echo -e "[main]\nserver_urls = https://$hostname:8081" > /etc/puppetlabs/puppet/puppetdb.conf
 echo "PuppetDB URL added to puppetdb.conf"
 
