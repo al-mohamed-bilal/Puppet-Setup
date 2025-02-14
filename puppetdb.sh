@@ -58,17 +58,18 @@ echo -e "[database]\nsubname = //localhost:5432/puppetdb\nusername = "puppetdb"\
 echo "Database Configuration added to database.ini"
 
 # Adding PuppetDB URL in /etc/puppetlabs/puppet/puppetdb.conf
-echo -e "[main]\nserver_urls = https://`hostname -I | awk '{print $1}'`:8081" > /etc/puppetlabs/puppet/puppetdb.conf
+hostname="server-`hostname -I | awk '{print $1}'`"
+echo -e "[main]\nserver_urls = https://$hostname:8081" > /etc/puppetlabs/puppet/puppetdb.conf
 echo "PuppetDB URL added to puppetdb.conf"
 
 # Setting up SSL and Configuring /etc/puppetlabs/puppetdb/conf.d/jetty.ini
 echo "Copying SSL directories..."
 mkdir -p /etc/puppetlabs/puppetdb/ssl
 cp /etc/puppetlabs/puppet/ssl/certs/ca.pem /etc/puppetlabs/puppetdb/ssl/
-cp /etc/puppetlabs/puppet/ssl/certs/`hostname -I | awk '{print $1}'`.pem /etc/puppetlabs/puppetdb/ssl/
-mv /etc/puppetlabs/puppetdb/ssl/`hostname -I | awk '{print $1}'`.pem /etc/puppetlabs/puppetdb/ssl/certificate.pem
-cp /etc/puppetlabs/puppet/ssl/private_keys/`hostname -I | awk '{print $1}'`.pem /etc/puppetlabs/puppetdb/ssl/
-mv /etc/puppetlabs/puppetdb/ssl/`hostname -I | awk '{print $1}'`.pem /etc/puppetlabs/puppetdb/ssl/private.pem
+cp /etc/puppetlabs/puppet/ssl/certs/$hostname.pem /etc/puppetlabs/puppetdb/ssl/
+mv /etc/puppetlabs/puppetdb/ssl/$hostname.pem /etc/puppetlabs/puppetdb/ssl/certificate.pem
+cp /etc/puppetlabs/puppet/ssl/private_keys/$hostname.pem /etc/puppetlabs/puppetdb/ssl/
+mv /etc/puppetlabs/puppetdb/ssl/$hostname.pem /etc/puppetlabs/puppetdb/ssl/private.pem
 chown -R puppetdb:puppetdb /etc/puppetlabs/puppetdb/ssl
 
 echo "Configuring jetty.ini..."
